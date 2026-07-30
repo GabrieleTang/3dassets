@@ -14,6 +14,9 @@
             color: white;
             -webkit-tap-highlight-color: transparent;
             touch-action: none;
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
         }
         
         /* ===== LOADING SCREEN ===== */
@@ -35,9 +38,9 @@
         }
         
         #loading .spinner {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 20px;
+            width: 40px;
+            height: 40px;
+            margin-bottom: 15px;
             border: 3px solid rgba(255,255,255,0.08);
             border-top: 3px solid #00d4ff;
             border-radius: 50%;
@@ -50,7 +53,7 @@
         }
         
         #loading h1 {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 300;
             letter-spacing: 2px;
             background: linear-gradient(135deg, #00d4ff, #7b2ffc);
@@ -59,24 +62,41 @@
         }
         
         #loading .subtitle {
-            font-size: 13px;
+            font-size: 11px;
             color: rgba(255,255,255,0.3);
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            margin: 5px 0 20px 0;
+            margin: 5px 0 15px 0;
         }
         
         #loading .loading-text {
-            font-size: 12px;
+            font-size: 11px;
             color: rgba(255,255,255,0.15);
             font-family: monospace;
+            margin-top: 8px;
+        }
+        
+        #loading .progress-bar {
+            width: 180px;
+            height: 2px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            overflow: hidden;
             margin-top: 10px;
+        }
+        
+        #loading .progress-bar .fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #7b2ffc);
+            border-radius: 10px;
+            transition: width 0.3s ease;
         }
 
         /* ===== JUDUL ===== */
         #title {
             position: fixed;
-            top: max(20px, env(safe-area-inset-top));
+            top: max(12px, env(safe-area-inset-top));
             left: 50%;
             transform: translateX(-50%);
             z-index: 50;
@@ -87,70 +107,71 @@
         }
         
         #title h2 {
-            font-size: clamp(14px, 3vw, 20px);
+            font-size: clamp(11px, 2.5vw, 16px);
             font-weight: 300;
-            background: rgba(0,0,0,0.5);
-            padding: 8px 20px;
+            background: rgba(0,0,0,0.4);
+            padding: 5px 14px;
             border-radius: 30px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.06);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.05);
             display: inline-block;
             letter-spacing: 0.5px;
         }
         
         #title h2 span { color: #00d4ff; }
         
-        /* ===== INFO KONTROL ===== */
-        #info {
+        /* ===== TOMBOL KEMBALI ===== */
+        #backBtn {
             position: fixed;
-            bottom: max(20px, env(safe-area-inset-bottom));
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 50;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 8px 16px;
-            border-radius: 50px;
-            color: rgba(255,255,255,0.5);
-            font-size: clamp(10px, 1.5vw, 13px);
-            border: 1px solid rgba(255,255,255,0.05);
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-        }
-        
-        #info .dot {
-            width: 3px;
-            height: 3px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 50%;
-        }
-        
-        /* ===== TOMBOL RESET (KHUSUS MOBILE) ===== */
-        #resetBtn {
-            position: fixed;
-            bottom: max(80px, calc(20px + env(safe-area-inset-bottom) + 50px));
-            right: max(20px, env(safe-area-inset-right));
+            top: max(12px, env(safe-area-inset-top));
+            left: max(12px, env(safe-area-inset-left));
             z-index: 60;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.08);
-            color: rgba(255,255,255,0.7);
-            width: 48px;
-            height: 48px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.6);
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            font-size: 20px;
+            font-size: 18px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+            text-decoration: none;
+        }
+        
+        #backBtn:active {
+            transform: scale(0.9);
+            background: rgba(0, 212, 255, 0.15);
+        }
+        
+        /* ===== TOMBOL RESET ===== */
+        #resetBtn {
+            position: fixed;
+            bottom: max(70px, calc(12px + env(safe-area-inset-bottom) + 50px));
+            right: max(12px, env(safe-area-inset-right));
+            z-index: 60;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.6);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
             touch-action: manipulation;
             user-select: none;
             -webkit-user-select: none;
@@ -158,8 +179,7 @@
         
         #resetBtn:active {
             transform: scale(0.9);
-            background: rgba(0, 212, 255, 0.2);
-            border-color: rgba(0, 212, 255, 0.3);
+            background: rgba(0, 212, 255, 0.15);
         }
         
         #resetBtn.hidden {
@@ -168,109 +188,83 @@
             transform: scale(0.8);
         }
         
-        /* ===== KEYBOARD HINT (Desktop) ===== */
+        /* ===== ERROR ===== */
+        #error {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2000;
+            background: rgba(40, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 30px 35px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,50,50,0.2);
+            text-align: center;
+            max-width: 350px;
+        }
+        
+        #error .icon { font-size: 40px; margin-bottom: 12px; }
+        #error h2 { color: #ff6b6b; font-size: 17px; margin-bottom: 8px; }
+        #error p { color: rgba(255,255,255,0.5); font-size: 13px; line-height: 1.5; }
+        
+        /* ===== KEYBOARD HINT ===== */
         #keyboardHint {
             position: fixed;
-            bottom: max(80px, calc(20px + env(safe-area-inset-bottom) + 50px));
-            left: max(20px, env(safe-area-inset-left));
+            bottom: max(70px, calc(12px + env(safe-area-inset-bottom) + 50px));
+            left: max(12px, env(safe-area-inset-left));
             z-index: 40;
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 12px;
-            padding: 10px 14px;
-            color: rgba(255,255,255,0.3);
-            font-size: 11px;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 10px;
+            padding: 8px 12px;
+            color: rgba(255,255,255,0.2);
+            font-size: 9px;
             font-family: monospace;
             pointer-events: none;
-            line-height: 1.6;
+            line-height: 1.4;
             transition: opacity 0.5s ease;
         }
         
         #keyboardHint kbd {
             display: inline-block;
-            background: rgba(255,255,255,0.06);
-            padding: 0 6px;
-            border-radius: 3px;
-            font-size: 10px;
-            color: rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.05);
+            padding: 0 4px;
+            border-radius: 2px;
+            font-size: 8px;
+            color: rgba(255,255,255,0.3);
             font-family: inherit;
-            min-width: 16px;
+            min-width: 12px;
             text-align: center;
         }
         
         #keyboardHint .row {
             display: flex;
-            gap: 4px;
+            gap: 3px;
             justify-content: center;
-        }
-        
-        @media (max-width: 768px) {
-            #keyboardHint {
-                display: none;
-            }
         }
         
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            #loading h1 { font-size: 20px; }
-            #loading .subtitle { font-size: 11px; letter-spacing: 3px; }
-            #loading .spinner { width: 40px; height: 40px; }
-            
-            #info {
-                padding: 6px 14px;
-                gap: 6px;
-                bottom: max(16px, env(safe-area-inset-bottom));
-            }
-            
-            #resetBtn {
-                width: 44px;
-                height: 44px;
-                font-size: 18px;
-                bottom: max(76px, calc(16px + env(safe-area-inset-bottom) + 50px));
-                right: max(16px, env(safe-area-inset-right));
-            }
+            #keyboardHint { display: none; }
+            #resetBtn { width: 44px; height: 44px; font-size: 18px; }
+            #backBtn { width: 44px; height: 44px; font-size: 18px; }
         }
         
         @media (max-width: 480px) {
             #loading h1 { font-size: 17px; }
-            #loading .subtitle { font-size: 10px; letter-spacing: 2px; }
-            #loading .spinner { width: 35px; height: 35px; }
-            
-            #title h2 { 
-                font-size: 12px;
-                padding: 5px 14px;
-            }
-            
-            #info {
-                font-size: 9px;
-                padding: 5px 12px;
-                gap: 4px;
-            }
-            
-            #resetBtn {
-                width: 38px;
-                height: 38px;
-                font-size: 16px;
-            }
+            #loading .subtitle { font-size: 10px; }
+            #loading .spinner { width: 32px; height: 32px; }
+            #resetBtn { width: 38px; height: 38px; font-size: 15px; }
+            #backBtn { width: 38px; height: 38px; font-size: 15px; }
         }
         
         @media (pointer: coarse) {
-            #resetBtn {
-                background: rgba(0,0,0,0.7);
-                border-color: rgba(255,255,255,0.1);
-            }
-        }
-        
-        @media (pointer: fine) {
-            #resetBtn {
-                opacity: 0.5;
-            }
-            #resetBtn:hover {
-                opacity: 1;
-                background: rgba(0, 212, 255, 0.15);
-            }
+            #resetBtn { background: rgba(0,0,0,0.6); }
+            #backBtn { background: rgba(0,0,0,0.6); }
         }
     </style>
 </head>
@@ -281,39 +275,35 @@
         <div class="spinner"></div>
         <h1>Frutiger Aero</h1>
         <div class="subtitle">Living Room 3D</div>
+        <div class="progress-bar">
+            <div class="fill" id="progressFill"></div>
+        </div>
         <div class="loading-text" id="loadingText">⏳ Memuat model...</div>
     </div>
+
+    <!-- ===== ERROR SCREEN ===== -->
+    <div id="error">
+        <div class="icon">⚠️</div>
+        <h2>Gagal Memuat Model</h2>
+        <p>Pastikan koneksi internet stabil dan coba lagi.</p>
+    </div>
+
+    <!-- ===== TOMBOL KEMBALI ===== -->
+    <a href="index.html" id="backBtn" aria-label="Kembali">←</a>
 
     <!-- ===== JUDUL ===== -->
     <div id="title">
         <h2>🏠 <span>Frutiger Aero</span> · Living Room</h2>
     </div>
 
-    <!-- ===== KEYBOARD HINT ===== -->
-    <div id="keyboardHint">
-        <div class="row">
-            <kbd>W</kbd>
-        </div>
-        <div class="row">
-            <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd>
-        </div>
-        <div style="margin-top:4px;font-size:9px;color:rgba(255,255,255,0.2);">
-            Q ↑ / E ↓ · R reset
-        </div>
-    </div>
-
     <!-- ===== TOMBOL RESET ===== -->
     <button id="resetBtn" aria-label="Reset kamera">⟳</button>
 
-    <!-- ===== INFO KONTROL ===== -->
-    <div id="info">
-        <span>👆</span> Drag
-        <span class="dot"></span>
-        <span>🤏</span> Pinch
-        <span class="dot"></span>
-        <span>⟳</span> Reset
-        <span class="dot"></span>
-        <span>⌨️</span> WASD
+    <!-- ===== KEYBOARD HINT ===== -->
+    <div id="keyboardHint">
+        <div class="row"><kbd>W</kbd></div>
+        <div class="row"><kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></div>
+        <div style="margin-top:3px;font-size:8px;color:rgba(255,255,255,0.15);">Q ↑ / E ↓ · R reset</div>
     </div>
 
     <!-- ===== IMPORT MAP ===== -->
@@ -338,254 +328,274 @@
         const PATH_MODEL = 'assets/frutiger-aero-living-room-7d66751c774bf7b1.spz';
         const POSISI_KAMERA = [-2, 3, 5];
         const TITIK_TUJU = [0, 1, 0];
-        const KECEPATAN_GERAK = 3.0;
+        const KECEPATAN_GERAK = 2.5;
         
-        console.log('🚀 Memulai Spark 3D dengan WASD + Mobile Support...');
+        // Cek apakah perangkat mobile
+        const isMobile = window.innerWidth < 768 || ('ontouchstart' in window);
+        
+        console.log('🚀 Memulai Spark 3D dengan Mobile Optimization...');
         console.log('📁 Model:', PATH_MODEL);
-
-        // ========================================
-        // 🎨 SETUP SCENE
-        // ========================================
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x0a0a1a);
-
-        // ========================================
-        // 📷 KAMERA
-        // ========================================
-        const isMobile = window.innerWidth < 768;
-        const fov = isMobile ? 65 : 60;
-        
-        const camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 0.01, 1000);
-        camera.position.set(POSISI_KAMERA[0], POSISI_KAMERA[1], POSISI_KAMERA[2]);
-
-        // ========================================
-        // 🎮 RENDERER
-        // ========================================
-        const renderer = new THREE.WebGLRenderer({ 
-            antialias: !isMobile,
-            alpha: false,
-            powerPreference: "high-performance"
-        });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.2;
-        renderer.outputColorSpace = THREE.SRGBColorSpace;
-        document.body.appendChild(renderer.domElement);
-
-        // ========================================
-        // 🎮 ORBIT CONTROLS
-        // ========================================
-        const controls = new OrbitControls(camera, renderer.domElement);
-        controls.target.set(TITIK_TUJU[0], TITIK_TUJU[1], TITIK_TUJU[2]);
-        controls.enableDamping = true;
-        controls.dampingFactor = isMobile ? 0.12 : 0.08;
-        controls.minDistance = 0.5;
-        controls.maxDistance = 30;
-        controls.rotateSpeed = isMobile ? 0.6 : 0.8;
-        controls.zoomSpeed = isMobile ? 0.8 : 1.0;
-        controls.panSpeed = 0.3;
-        controls.touchRotate = true;
-        controls.touchZoom = true;
-        controls.touchPan = true;
-        controls.enablePan = true;
-        controls.update();
-
-        // ========================================
-        // ⚡ SPARK RENDERER
-        // ========================================
-        const spark = new SparkRenderer({ 
-            renderer,
-            toneMapping: true,
-        });
-        scene.add(spark);
-
-        // ========================================
-        // 📦 MUAT FILE SPZ
-        // ========================================
-        const loadingText = document.getElementById('loadingText');
-        
-        const splat = new SplatMesh({ 
-            url: PATH_MODEL,
-            onProgress: (progress) => {
-                const percent = Math.round(progress * 100);
-                loadingText.textContent = `⏳ Memuat model... ${percent}%`;
-                console.log(`📦 Loading: ${percent}%`);
-            }
-        });
-        splat.position.set(0, 0, 0);
-        scene.add(splat);
-
-        // ========================================
-        // 🚀 SEMBUNYIKAN LOADING
-        // ========================================
-        setTimeout(() => {
-            document.getElementById('loading').classList.add('hidden');
-            loadingText.textContent = '✅ Selesai!';
-        }, 1500);
-
-        // ========================================
-        // ⌨️ KEYBOARD STATE (WASD)
-        // ========================================
-        const keys = {
-            w: false,
-            a: false,
-            s: false,
-            d: false,
-            q: false,
-            e: false
-        };
-
-        document.addEventListener('keydown', (e) => {
-            const key = e.key.toLowerCase();
-            if (key in keys) {
-                keys[key] = true;
-                e.preventDefault();
-            }
-            // Reset kamera dengan R
-            if (key === 'r') {
-                resetCamera();
-                e.preventDefault();
-            }
-        });
-
-        document.addEventListener('keyup', (e) => {
-            const key = e.key.toLowerCase();
-            if (key in keys) {
-                keys[key] = false;
-                e.preventDefault();
-            }
-        });
-
-        // ========================================
-        // 🔄 FUNGSI GERAK KAMERA (WASD)
-        // ========================================
-        function updateCameraMovement(deltaTime) {
-            // Hitung arah kamera (horizontal saja)
-            const forward = new THREE.Vector3();
-            const right = new THREE.Vector3();
-            
-            // Ambil arah depan dari kamera (tanpa komponen vertikal)
-            camera.getWorldDirection(forward);
-            forward.y = 0;
-            forward.normalize();
-            
-            // Vektor ke kanan (cross product)
-            right.crossVectors(forward, new THREE.Vector3(0, 1, 0)).normalize();
-            
-            // Vektor gerak
-            const moveVector = new THREE.Vector3(0, 0, 0);
-            
-            // WASD
-            if (keys.w) moveVector.add(forward.clone().multiplyScalar(1));
-            if (keys.s) moveVector.add(forward.clone().multiplyScalar(-1));
-            if (keys.a) moveVector.add(right.clone().multiplyScalar(-1));
-            if (keys.d) moveVector.add(right.clone().multiplyScalar(1));
-            
-            // Q/E untuk naik/turun
-            if (keys.q) moveVector.y += 1;
-            if (keys.e) moveVector.y -= 1;
-            
-            // Normalisasi dan aplikasikan kecepatan
-            if (moveVector.length() > 0) {
-                moveVector.normalize();
-                const speed = KECEPATAN_GERAK * deltaTime;
-                moveVector.multiplyScalar(speed);
-                
-                // Gerakkan kamera
-                camera.position.add(moveVector);
-                
-                // Gerakkan target (titik fokus) agar mengikuti kamera
-                controls.target.add(moveVector);
-                controls.update();
-            }
-        }
-
-        // ========================================
-        // 🔄 ANIMASI LOOP
-        // ========================================
-        let lastTime = 0;
-        
-        function animate(time) {
-            requestAnimationFrame(animate);
-            
-            // Hitung delta time untuk gerakan yang smooth
-            const deltaTime = Math.min((time - lastTime) / 1000, 0.05);
-            lastTime = time;
-            
-            // Update gerakan WASD
-            updateCameraMovement(deltaTime);
-            
-            // Update controls
-            controls.update();
-            
-            // Render
-            renderer.render(scene, camera);
-        }
-        animate(0);
-
-        // ========================================
-        // 📱 HANDLE RESIZE
-        // ========================================
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                const width = window.innerWidth;
-                const height = window.innerHeight;
-                camera.aspect = width / height;
-                camera.updateProjectionMatrix();
-                renderer.setSize(width, height);
-                
-                const isMobileNow = width < 768;
-                if (isMobileNow !== isMobile) {
-                    camera.fov = isMobileNow ? 65 : 60;
-                    camera.updateProjectionMatrix();
-                }
-            }, 100);
-        });
-
-        // ========================================
-        // 🔄 RESET KAMERA
-        // ========================================
-        function resetCamera() {
-            camera.position.set(POSISI_KAMERA[0], POSISI_KAMERA[1], POSISI_KAMERA[2]);
-            controls.target.set(TITIK_TUJU[0], TITIK_TUJU[1], TITIK_TUJU[2]);
-            controls.update();
-            console.log('🔄 Kamera direset');
-            
-            const btn = document.getElementById('resetBtn');
-            btn.style.transform = 'scale(0.8)';
-            setTimeout(() => {
-                btn.style.transform = '';
-            }, 200);
-        }
-
-        // ========================================
-        // 🖱️ TOMBOL RESET
-        // ========================================
-        const resetBtn = document.getElementById('resetBtn');
-        resetBtn.addEventListener('click', resetCamera);
-        resetBtn.addEventListener('touchend', (e) => {
-            e.preventDefault();
-            resetCamera();
-        });
-
-        // ========================================
-        // 📊 INFO
-        // ========================================
-        console.log('✅ Website 3D siap!');
         console.log(`📱 Mode: ${isMobile ? 'Mobile' : 'Desktop'}`);
-        console.log('💡 Kontrol:');
-        console.log('   - 🖱️ Drag: rotasi');
-        console.log('   - 🤏 Pinch: zoom');
-        console.log('   - ⌨️ WASD: gerak maju/mundur/kiri/kanan');
-        console.log('   - ⌨️ Q/E: naik/turun');
-        console.log('   - ⌨️ R: reset kamera');
-        
-        setTimeout(() => {
-            resetBtn.classList.remove('hidden');
-        }, 2000);
+
+        // ========================================
+        // 📊 PROGRESS
+        // ========================================
+        const progressFill = document.getElementById('progressFill');
+        const loadingText = document.getElementById('loadingText');
+        const loadingDiv = document.getElementById('loading');
+        const errorDiv = document.getElementById('error');
+        const resetBtn = document.getElementById('resetBtn');
+
+        function updateProgress(percent, message) {
+            progressFill.style.width = Math.min(percent, 100) + '%';
+            if (message) loadingText.textContent = message;
+        }
+
+        function showError() {
+            loadingDiv.style.display = 'none';
+            errorDiv.style.display = 'block';
+        }
+
+        try {
+            // ========================================
+            // 🎨 SETUP SCENE
+            // ========================================
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x0a0a1a);
+
+            // ========================================
+            // 📷 KAMERA - Mobile friendly
+            // ========================================
+            const fov = isMobile ? 70 : 60;
+            
+            const camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 0.01, 1000);
+            camera.position.set(POSISI_KAMERA[0], POSISI_KAMERA[1], POSISI_KAMERA[2]);
+
+            // ========================================
+            // 🎮 RENDERER - Optimasi untuk mobile
+            // ========================================
+            const renderer = new THREE.WebGLRenderer({ 
+                antialias: !isMobile, // Matikan anti-aliasing di mobile
+                alpha: false,
+                powerPreference: "high-performance",
+                stencil: false,
+                depth: true,
+            });
+            
+            // Pixel ratio lebih rendah untuk performa mobile
+            const maxPixelRatio = isMobile ? 1.2 : 2;
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxPixelRatio));
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.2;
+            renderer.outputColorSpace = THREE.SRGBColorSpace;
+            document.body.appendChild(renderer.domElement);
+
+            // ========================================
+            // 🎮 ORBIT CONTROLS - Mobile friendly
+            // ========================================
+            const controls = new OrbitControls(camera, renderer.domElement);
+            controls.target.set(TITIK_TUJU[0], TITIK_TUJU[1], TITIK_TUJU[2]);
+            controls.enableDamping = true;
+            controls.dampingFactor = isMobile ? 0.15 : 0.08;
+            controls.minDistance = 0.5;
+            controls.maxDistance = isMobile ? 20 : 30;
+            controls.rotateSpeed = isMobile ? 0.4 : 0.8;
+            controls.zoomSpeed = isMobile ? 0.5 : 1.0;
+            controls.panSpeed = 0.3;
+            controls.touchRotate = true;
+            controls.touchZoom = true;
+            controls.touchPan = true;
+            controls.enablePan = true;
+            controls.update();
+
+            // ========================================
+            // ⚡ SPARK RENDERER
+            // ========================================
+            const spark = new SparkRenderer({ 
+                renderer,
+                toneMapping: true,
+                // Optimasi mobile
+                maxGaussians: isMobile ? 500000 : 2000000,
+            });
+            scene.add(spark);
+
+            // ========================================
+            // 📦 MUAT FILE SPZ
+            // ========================================
+            updateProgress(10, '🔄 Menyiapkan renderer...');
+            
+            const splat = new SplatMesh({ 
+                url: PATH_MODEL,
+                onProgress: (progress) => {
+                    const percent = Math.round(progress * 100);
+                    updateProgress(percent, `⏳ Memuat model... ${percent}%`);
+                    console.log(`📦 Loading: ${percent}%`);
+                }
+            });
+            splat.position.set(0, 0, 0);
+            scene.add(splat);
+
+            // ========================================
+            // 🚀 SEMBUNYIKAN LOADING
+            // ========================================
+            // Loading selesai setelah 3 detik atau saat progress 100%
+            let loadingComplete = false;
+            
+            function finishLoading() {
+                if (loadingComplete) return;
+                loadingComplete = true;
+                updateProgress(100, '✅ Selesai!');
+                setTimeout(() => {
+                    loadingDiv.classList.add('hidden');
+                    resetBtn.classList.remove('hidden');
+                }, 500);
+            }
+
+            // Timeout untuk memastikan loading tidak forever
+            setTimeout(finishLoading, 8000);
+
+            // Jika progress mencapai 100%, selesai
+            const originalUpdate = updateProgress;
+            updateProgress = function(percent, message) {
+                originalUpdate(percent, message);
+                if (percent >= 100) {
+                    finishLoading();
+                }
+            };
+
+            // ========================================
+            // ⌨️ KEYBOARD STATE (WASD)
+            // ========================================
+            const keys = {
+                w: false,
+                a: false,
+                s: false,
+                d: false,
+                q: false,
+                e: false
+            };
+
+            document.addEventListener('keydown', (e) => {
+                const key = e.key.toLowerCase();
+                if (key in keys) {
+                    keys[key] = true;
+                    e.preventDefault();
+                }
+                if (key === 'r') {
+                    resetCamera();
+                    e.preventDefault();
+                }
+            });
+
+            document.addEventListener('keyup', (e) => {
+                const key = e.key.toLowerCase();
+                if (key in keys) {
+                    keys[key] = false;
+                    e.preventDefault();
+                }
+            });
+
+            // ========================================
+            // 🔄 FUNGSI GERAK KAMERA (WASD)
+            // ========================================
+            function updateCameraMovement(deltaTime) {
+                const forward = new THREE.Vector3();
+                const right = new THREE.Vector3();
+                
+                camera.getWorldDirection(forward);
+                forward.y = 0;
+                forward.normalize();
+                
+                right.crossVectors(forward, new THREE.Vector3(0, 1, 0)).normalize();
+                
+                const moveVector = new THREE.Vector3(0, 0, 0);
+                
+                if (keys.w) moveVector.add(forward.clone().multiplyScalar(1));
+                if (keys.s) moveVector.add(forward.clone().multiplyScalar(-1));
+                if (keys.a) moveVector.add(right.clone().multiplyScalar(-1));
+                if (keys.d) moveVector.add(right.clone().multiplyScalar(1));
+                if (keys.q) moveVector.y += 1;
+                if (keys.e) moveVector.y -= 1;
+                
+                if (moveVector.length() > 0) {
+                    moveVector.normalize();
+                    const speed = KECEPATAN_GERAK * deltaTime;
+                    moveVector.multiplyScalar(speed);
+                    
+                    camera.position.add(moveVector);
+                    controls.target.add(moveVector);
+                    controls.update();
+                }
+            }
+
+            // ========================================
+            // 🔄 ANIMASI LOOP
+            // ========================================
+            let lastTime = 0;
+            
+            function animate(time) {
+                requestAnimationFrame(animate);
+                
+                const deltaTime = Math.min((time - lastTime) / 1000, 0.05);
+                lastTime = time;
+                
+                updateCameraMovement(deltaTime);
+                controls.update();
+                renderer.render(scene, camera);
+            }
+            animate(0);
+
+            // ========================================
+            // 📱 HANDLE RESIZE
+            // ========================================
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    const width = window.innerWidth;
+                    const height = window.innerHeight;
+                    camera.aspect = width / height;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(width, height);
+                }, 200);
+            });
+
+            // ========================================
+            // 🔄 RESET KAMERA
+            // ========================================
+            function resetCamera() {
+                camera.position.set(POSISI_KAMERA[0], POSISI_KAMERA[1], POSISI_KAMERA[2]);
+                controls.target.set(TITIK_TUJU[0], TITIK_TUJU[1], TITIK_TUJU[2]);
+                controls.update();
+                console.log('🔄 Kamera direset');
+                
+                resetBtn.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    resetBtn.style.transform = '';
+                }, 200);
+            }
+
+            // ========================================
+            // 🖱️ TOMBOL RESET
+            // ========================================
+            resetBtn.addEventListener('click', resetCamera);
+            resetBtn.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                resetCamera();
+            });
+
+            // ========================================
+            // 📊 INFO
+            // ========================================
+            console.log('✅ Website 3D siap!');
+            console.log(`📱 Mode: ${isMobile ? 'Mobile' : 'Desktop'}`);
+            console.log('💡 Kontrol: WASD gerak | Q/E naik/turun | R reset');
+
+        } catch (error) {
+            console.error('❌ Error:', error);
+            showError();
+        }
     </script>
 </body>
 </html>
